@@ -1,0 +1,77 @@
+{%load static%}
+
+    <!-- Biginning header -->
+       {% include 'includes/header.html'%}
+
+
+  
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+    
+
+      {% include 'includes/sidebar.html'  %}
+
+
+      <!-- partial -->
+     
+      {% block content  %}
+<div class="card col d-flex  align-items-center ">
+       
+    <div class="card-body" >
+        <center>
+        <h3 class="align-center">Add Account Type</h3>
+       </center>
+  <form method="POST"> 
+    {% if messages %}
+    {% for message in messages %}
+    <h4>{{message}}</h4>
+    {% endfor %}
+    {% endif %}
+      {% csrf_token %}
+      
+
+    <div class="input-group mb-3">
+    <select class="form-control" name="Aid" required>
+        <option selected disabled="true" style="font-weight: bold; border-bottom: 1px solid gray;">----Select Account Type----</option>
+        {% for types in type %}
+        <option value="{{types.Aid}}" style="font-weight: bold; border-bottom: 1px solid gray;">{{types.acct_type_name}}</option>
+        {% endfor %}
+        
+    </select>
+
+    </div>
+    <div>
+        
+    </div>
+<div class="input-group mb-3">
+
+    <input class="form-control" type="text" placeholder="Enter Account Heading" name="head_name" required>
+    
+    <input class="form-control" type="number" placeholder="Enter General Ledger No" name="gl_no" required data-maxlength="6" oninput="this.value=this.value.slice(0,this.dataset.maxlength)">
+</div>
+  
+<div class="input-group mb-3">
+
+
+    
+    
+</div>
+    
+    <input type="button" value="Go Back!" class="btn btn-danger btn-lg" onclick="history.back()">
+        <input class="btn btn-primary btn-lg" type="submit" name="submit" value="Add Account">
+    </div>
+
+
+    </form>
+    </div>
+    </div>
+
+    {% endblock %}
+
+
+</body>
+
+{% include 'includes/footer.html'  %}
+
+</html>
+

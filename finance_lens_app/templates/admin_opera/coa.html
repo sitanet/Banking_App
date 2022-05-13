@@ -1,0 +1,373 @@
+{%load static%}
+
+    <!-- Biginning header -->
+{% include 'includes/header.html'%}
+
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+    
+{% include 'includes/sidebar.html'  %}
+
+
+      <!-- partial -->
+     
+{% block content  %}
+<div class="card col-lg-4 d-flex  align-items-center ">
+       
+    <div class="card-body" >
+
+       {% if coa %}
+       <form method="POST" action=""> 
+         <div align="right">
+            <a href="{% url 'coa' %}" >
+            <button type="button"  class="btn btn-secondary btn-sm "><b>Back</b></button></a>
+        </div>
+        <center>
+          <h3 class="align-center">Update Account</h3>
+         </center>
+        {% if messages %}
+        {% for message in messages %}
+            <h5 class="alert alert-success mt-3">{{message}}</h5>
+        {% endfor %}
+        {% endif %}
+        {% csrf_token %}
+
+        
+
+              <div class="input-group mb-3">
+                <select class="form-control" name="ac_type" id="select1" required>
+                    <option selected disabled="true" style="font-weight: bold; border-bottom: 1px solid gray;">----Select Account Type----</option>
+                    {% for types in type %}
+                    <option value="{{types.Aid}}" style="font-weight: bold; border-bottom: 1px solid gray;">{{types.acct_type_name}}</option>
+                    {% endfor %}        
+                </select>     
+              </div>
+        
+        
+              <div class="input-group mb-3">
+                <select class="form-control" name="ac_head" id="select2" required>
+                  <option selected disabled="true" ></option>
+                {% for cats in cat %}
+                  <option value="{{cats.Aid}}" style="font-weight: bold; border-bottom: 1px solid gray;">{{cats.gl_no}}--{{cats.head_name}}</option>
+                {% endfor %}   
+                </select>  
+              </div>
+        
+        
+              <div class="input-group mb-3">
+                
+                <input class="form-control" type="text" value="{{coa.ac_name}}"  name="ac_name" required>
+               
+                <input  class="form-control" type="number" value="{{coa.gl_no}}"  name="gl_no" required data-maxlength="6" oninput="this.value=this.value.slice(0,this.dataset.maxlength)">
+              </div>
+        
+        
+              <div class="input-group mb-3 col-xs-2">
+                <select class="form-control" name="currcy" id="select3" required>
+                  <option value="NGR" style="font-weight: bold; border-bottom: 1px solid gray;">NGR</option>
+                  <option value="USD" style="font-weight: bold; border-bottom: 1px solid gray;">USD</option>
+                  <option value="EUR" style="font-weight: bold; border-bottom: 1px solid gray;">EUR</option>       
+                </select>
+                
+              </div>
+                <div>
+                <center>
+                 
+                <input class="btn btn-primary btn-lg" type="submit" name="submit" value="Update Account">
+              </center>
+              </div>
+            </div>
+        
+          </div>
+         
+        
+        
+            </form>
+           
+
+       {% else %}
+  <form method="POST" class="needs-validation" novalidate> 
+    <center>
+      <h3 class="align-center">Add Account</h3>
+     </center>
+    
+
+{% if messages %}
+{% for message in messages %}
+<h5 class="alert alert-success mt-3">{{message}}</h5>
+{% endfor %}
+{% endif %}
+{% csrf_token %}
+
+
+  
+      <div class="input-group mb-3">
+        <select class="form-control" name="ac_type" id="select1" required>
+            <option selected disabled="true" style="font-weight: bold; border-bottom: 1px solid gray;">----Select Account Type----</option>
+            {% for types in type %}
+            <option value="{{types.Aid}}" style="font-weight: bold; border-bottom: 1px solid gray;">{{types.acct_type_name}}</option>
+            {% endfor %}        
+        </select>     
+      </div>
+
+
+      <div class="input-group mb-3">
+        <select class="form-control" name="ac_head" id="select2" required>
+          <option selected disabled="true" ></option>
+        {% for cats in cat %}
+          <option value="{{cats.Aid}}" style="font-weight: bold; border-bottom: 1px solid gray;">{{cats.gl_no}}--{{cats.head_name}}</option>
+        {% endfor %}   
+        </select>  
+      </div>
+
+
+      <div class="input-group mb-3">
+
+        <input class="form-control" type="text" placeholder="Enter Account Name" name="ac_name" required>
+    
+        <input  class="form-control" type="number" placeholder="Enter General Ledger No" name="gl_no" required data-maxlength="6" oninput="this.value=this.value.slice(0,this.dataset.maxlength)">
+      </div>
+
+
+      <div class="input-group mb-3 col-xs-2">
+        <select class="form-control" name="currcy" id="select3" required>
+          <option value="NGR" style="font-weight: bold; border-bottom: 1px solid gray;">NGR</option>
+          <option value="USD" style="font-weight: bold; border-bottom: 1px solid gray;">USD</option>
+          <option value="EUR" style="font-weight: bold; border-bottom: 1px solid gray;">EUR</option>       
+        </select>
+        
+      </div>
+
+      <center>
+        
+        <input class="btn btn-primary btn-lg" type="submit" name="submit" value="Add Account">
+      </center>
+    </div>
+
+  </div>
+
+    </form>
+    
+    
+{% endif%}
+
+              <!-- Chart of Accounts -->
+
+        <div class="col-lg-6 grid-margin stretch-card align-items-center">
+            <div class="card">
+            <div class="card-body">
+             
+             
+            
+           <center>
+            <h3 class="align-center" >Chart of Accounts</h3>
+           </center>
+           
+            <div class="table-responsive">
+                
+              <table class="table">
+                <thead>
+                   
+                  <tr>
+                    <th style="font-weight: bold; border-bottom: 1px solid gray;">Acct Type</th>
+                    <th style="font-weight: bold; border-bottom: 1px solid gray;">GL No</th>
+                    
+                    <th style="font-weight: bold; border-bottom: 1px solid gray;">GL Name</th>
+                   
+                    
+                    <th style="font-weight: bold; border-bottom: 1px solid gray;">Action</th>
+                
+                  </tr>
+                 
+                
+                </thead>
+                {% for ac_coas in ac_coa %}
+                
+               
+              
+                <tbody>
+                
+                
+                  <tr>
+                    
+                    {% if ac_coas.gl_no <= 199999%}
+                    <td style="font-weight: bold; border-bottom: 1px solid gray;">ASSET</td>
+                    <td>{{ac_coas.gl_no}}</td>
+                   
+                    <td >{{ac_coas.ac_name}}</td>
+                    
+                    
+                    
+                    <td>
+                     
+                      <a class="btn btn-primary btn-sm" href="{% url 'coa_edit' ac_coas.id%}">Edit</a>
+                      <a class="btn btn-danger btn-sm" href="{% url 'coa-delete' ac_coas.id%}">Delete</a>
+                      
+                       
+                    </td>
+                   
+                    
+                    {% elif ac_coas.gl_no <= 299999%}
+                    <td style="font-weight: bold; border-bottom: 1px solid gray;"> LIABILITIES</td>
+                    <td>{{ac_coas.gl_no}}</td>
+                   
+                    <td >{{ac_coas.ac_name}}</td>
+                    
+                    
+                    
+                   
+                      <td>
+                        
+                        
+                        <a class="btn btn-primary btn-sm" href="{% url 'coa_edit' ac_coas.id%}">Edit</a>
+                      <a class="btn btn-danger btn-sm" href="{% url 'coa-delete' ac_coas.id%}">Delete</a>
+                         
+                      </td>
+                       
+                   
+                   
+                    {% elif ac_coas.gl_no <= 399999%}
+                    <td style="font-weight: bold; border-bottom: 1px solid gray;"> EQUITIES</td>
+                    <td>{{ac_coas.gl_no}}</td>
+                   
+                    <td >{{ac_coas.ac_name}}</td>
+                  
+                    
+                    
+                    <td>
+                      <a class="btn btn-primary btn-sm" href="{% url 'coa_edit' ac_coas.id%}">Edit</a>
+                      <a class="btn btn-danger btn-sm" href="{% url 'coa-delete' ac_coas.id%}">Delete</a>
+                       
+                    </td>
+                    
+                    {% elif ac_coas.gl_no <= 499999%}
+                    <td style="font-weight: bold; border-bottom: 1px solid gray;"> INCOMES</td>
+                    <td>{{ac_coas.gl_no}}</td>
+                   
+                    <td >{{ac_coas.ac_name}}</td>
+                  
+                    
+                    
+                    <td>
+                      <a class="btn btn-primary btn-sm" href="{% url 'coa_edit' ac_coas.id%}">Edit</a>
+                      <a class="btn btn-danger btn-sm" href="{% url 'coa-delete' ac_coas.id%}">Delete</a>
+                       
+                    </td>
+                 
+                    {% elif ac_coas.gl_no <= 599999%}
+                    <td style="font-weight: bold; border-bottom: 1px solid gray;"> EXPENSES</td>
+                    <td>{{ac_coas.gl_no}}</td>
+                   
+                    <td >{{ac_coas.ac_name}}</td>
+                  
+                   
+                    
+                    <td>
+                      <a class="btn btn-primary btn-sm" href="{% url 'coa_edit' ac_coas.id%}">Edit</a>
+                      <a class="btn btn-danger btn-sm" href="{% url 'coa-delete' ac_coas.id%}">Delete</a>
+                       
+                    </td>
+                   
+                    {% else %}
+                    empty
+                    {% endif %}
+                  </tr>
+             
+                </tbody>
+                
+                {% endfor %}
+              </table>
+
+               <!-- Pagination -->
+              <b><p>Page: {{ac_coa.number}}/{{ac_coa.paginator.num_pages}}</p></b> 
+              <div class="container">
+              
+
+                <div class="row">
+                  <div class="col-sm offset-md-3">
+                    
+                   
+                    
+             
+
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item">
+                    {% if ac_coa.has_previous %}
+                    <a class="page-link" 
+                    href="?page={{ ac_coa.previous_page_number}}">Previous</a>
+                    {% endif %}
+                  </li>
+                  {% for num_page in ac_coa.paginator.page_range %}
+                  <br>
+                  {% if ac_coa.number == num_page %}
+                  <li class="page-item active">
+                    <a class="page-link" href="?page={{ num_page }}">{{num_page}} <span class="sr-only">(current)</span></a>
+                  </li>
+
+                  {% else %}
+                  <li class="page-item ">
+                    <a class="page-link" href="?page={{ num_page }}">{{num_page}} <span class="sr-only">(current)</span></a>
+                  </li>
+                  {% endif %}
+                  <br>
+                  {% endfor %}
+                 
+                  <li class="page-item">
+                    {% if ac_coa.has_next %}
+                    <a class="page-link" href="?page={{ ac_coa.next_page_number}}">Next</a>
+                    {% endif %}
+                  </li>
+                </ul>
+              
+              </nav>
+              </div>
+              </div>
+            </div>
+
+
+            </div>
+         
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    {% endblock %}
+
+
+</body>
+
+
+{% include 'includes/footer.html'  %}
+
+
+
+
+</html>
+

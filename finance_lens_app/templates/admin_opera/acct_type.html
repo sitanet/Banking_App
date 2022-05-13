@@ -1,0 +1,75 @@
+{%load static%}
+
+    <!-- Biginning header -->
+       {% include 'includes/header.html'%}
+
+
+  
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+    
+
+      {% include 'includes/sidebar.html'  %}
+
+
+      <!-- partial -->
+     
+      {% block content  %}
+      
+      
+      <div class="card col d-flex  align-items-center ">
+      
+        
+        {% if messages %}
+        {% for message in messages %}
+        <h5>{{message}}</h5>
+        {% endfor %}
+        {% endif %}
+       
+        <div class="card-body" >
+          
+            <h3 class="align-center">Add Account Type</h3>
+         
+      <form action="" method="POST"> 
+          {% csrf_token %}
+      <center>
+
+        <div >
+          
+          <select name="acct_type_name" id="acct_type_name" class="form-control form-select-lg mb-3">
+            <option value="Assets">Assets</option>
+            <option value="Liabilities">Liabilities</option>
+            <option value="Equities">Equities</option>
+            <option value="Incomes">Incomes</option>
+            <option value="Expenses">Expenses</option>
+          </select>
+          
+        
+        </div>
+       
+       
+       
+      
+      <input type="button" value="Go Back!" class="btn btn-danger btn-lg" onclick="history.back()">
+
+        <input class="btn btn-primary btn-lg" type="submit" name="submit" value="Add Account">
+        </div>
+        
+      </center>
+
+        </form>
+        </div>
+        
+
+     
+  
+
+      {% endblock %}
+
+
+</body>
+
+{% include 'includes/footer.html'  %}
+
+</html>
+

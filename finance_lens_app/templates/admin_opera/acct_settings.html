@@ -1,0 +1,45 @@
+{%load static%}
+
+    <!-- Biginning header -->
+       {% include 'includes/header.html'%}
+
+
+  
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+    
+
+      {% include 'includes/sidebar.html'  %}
+
+
+      <!-- partial -->
+     
+      {% block content  %}
+    
+<div class="card col d-flex  align-items-center ">
+       
+  <div class="card-body" >
+   
+          
+          
+         
+          <a href="{% url 'acct_type' %}"> <button type="button" class="btn btn-primary btn-lg"><b>Account Type</b></button></a>
+   
+          
+          <a href="{% url 'acct_cat' %}"><button type="button"  class="btn btn-primary btn-lg "><b>Add Account Cartegory</b></button></a>
+
+            <a href="{% url 'coa' %}">
+                  <button type="button"  class="btn btn-primary btn-lg "><b>Chart of Accounts</b></button></a>
+  </div>
+</div>
+      
+
+      {% endblock %}
+
+
+</body>
+
+{% include 'includes/footer.html'  %}
+
+</html>
+
