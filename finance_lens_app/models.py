@@ -35,6 +35,11 @@ class coa(models.Model):
         
         db_table="coa"
 
+    def __str__(self): 
+        return str(self.ac_name)
+   
+        
+
 
 
 

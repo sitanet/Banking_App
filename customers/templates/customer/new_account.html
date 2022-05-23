@@ -1,5 +1,7 @@
 {%load static%}
 
+{% load crispy_forms_tags %}
+
     <!-- Biginning header -->
 {% include 'includes/header.html'%}
 
@@ -9,16 +11,236 @@
 {% include 'includes/sidebar.html'  %}
 
 
-      <!-- partial -->
-     
+  
+    
 {% block content  %}
-<div class="card col d-flex  align-items-center ">
-       
-    <div class="card-body" >
 
-        <h1>CUSTOMERS</h1>
 
+   
+
+
+
+  <div class="card" style="width: 60rem;">
+
+
+    <div class="row">
+      <div class="col-3">
+
+      </div>
+   
+  
+      <div class="col-6">
+    {% for message in messages %}
+    <h5 class="alert alert-warning mt-3">{{message}}</h5>
+    {% endfor %}
+  </div>
+  <div class="col-3">
+
+  </div>
+
+  </div>
+   
+ 
+  <div class="container pt-4">
+    
+   
+
+    <div class="row">
+        <div class="col-4">
+           
+           </div>
+      
+    
     </div>
+
+    <div class="row">
+        <div class="col-3">
+           
+           </div>
+      
+        <div class="col-5">
+         <h4 style="color: pulple;" class="card-header card-header-danger"><b>Customer's Information</b></h4>
+         &nbsp;
+         &nbsp;
+         
+        </div>
+
+        <div class="col-4">
+       
+           </div>
+    </div>
+
+    
+
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="row" style="color: purple;">
+        <div class="col-3">
+         
+        </div>
+        <div class="col-3">
+          <b>{{ form.photo|as_crispy_field  }}</b>
+        </div>
+        <div class="col-3">
+          <b>{{ form.sign|as_crispy_field }}</b>
+        </div>
+      </div>
+   
+
+      <div class="row" style="color: green;">
+        <div class="col-4"style="color: green;" >
+        
+        <b>{{ form.br_code|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4" >
+        <b>{{ form.acc_cat|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4" >
+        <b>{{ form.dobirth|as_crispy_field  }}</b>
+       </div>
+     </div>
+
+     <div class="row" style="color: green;">
+      
+      <div class="col-8">
+    
+      
+      <b> {{ form.name|as_crispy_field  }}</b>
+       
+      </div>
+
+      <div class="col-4" >
+        <b>{{ form.cust_sex|as_crispy_field  }}</b>
+       </div>
+
+     
+  </div>
+   
+     <div class="row" style="color: green;">
+      <div class="col-6" >
+        <b>{{ form.res_address|as_crispy_field  }}</b>
+       </div>
+
+       <div class="col-6" >
+        <b>{{ form.off_address|as_crispy_field  }}</b>
+       </div>
+     
+     </div>
+
+     <div class="row" style="color: green;">
+     
+       <div class="col-4" >
+       <b> {{ form.phone_no|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4" >
+        <b>{{ form.mar_status|as_crispy_field  }}</b>
+       </div>
+
+       <div class="col-4" >
+        <b> {{ form.mode_of_id|as_crispy_field  }}</b>
+       </div>
+     </div>
+
+     <div class="row" style="color: green;">
+      
+       <div class="col-4" >
+        <b>{{ form.id_no|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4" >
+        <b>{{ form.ref_no|as_crispy_field  }}</b>
+       </div>
+
+       <div class="col-4" >
+        <b>{{ form.place_of_birth|as_crispy_field  }}</b>
+       </div>
+     </div>
+
+     <div class="row" style="color: green;">
+       
+       <div class="col-4" >
+        <b>{{ form.mother_mai_name|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4">
+        <b>{{ form.religion|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4">
+        <b>{{ form.tin_no|as_crispy_field  }}</b>
+       </div>
+     </div>
+
+     <div class="row" style="color: green;">
+      
+       <div class="col-4">
+        <b>{{ form.state_of_oringin|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4">
+        <b>{{ form.local_govt_origin|as_crispy_field  }}</b>
+      </div>
+      <div class="col-4">
+        <b>{{ form.nationality|as_crispy_field  }}</b>
+       </div>
+     </div>
+
+    <div class="row">
+       
+       
+    </div>
+
+    <div class="row" style="color: green;">
+        <div class="col-4">
+        <b>{{ form.city|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4">
+        <b>{{ form.local_govt_res|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4">
+        <b>{{ form.state_of_res|as_crispy_field  }}</b>
+      </div>
+    </div>
+
+    <div class="row" style="color: green;">
+        <div class="col-4">
+        <b>{{ form.landmark|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4">
+        <b>{{ form.email_add|as_crispy_field  }}</b>
+       </div>
+       <div class="col-4">
+        <b>{{ form.ocuppation|as_crispy_field }}</b>
+      </div>
+    </div>
+     
+
+    <div class="row">
+      
+
+      <div class="col-9">
+        
+     </div>
+        <div class="col-3" >
+          &nbsp;
+            <button type="submit" class="btn btn-primary">Submit Application</button>
+            &nbsp;
+           
+       
+        </div>
+    
+
+
+  
+    </form>
+  </div>
+
+    &nbsp;
+    &nbsp;
+  
+ 
+
+
+</div>
+
 </div>
 
 
@@ -28,14 +250,6 @@
 
 
 
-
-
-
-
-
-
-    
-
     {% endblock %}
 
 
@@ -43,6 +257,7 @@
 
 
 {% include 'includes/footer.html'  %}
+
 
 
 

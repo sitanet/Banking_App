@@ -20,9 +20,7 @@ urlpatterns = [
     path('acct_type/',admin_views.acct_type, name="acct_type"),
     path('acct_type/',admin_views.acct_type, name="acct_type"),
     path('acct_cat/',admin_views.acct_cat, name="acct_cat"),
-    path('', include('customers.url')),
-    path('', include('employee.url')),
-    path('', include('company.url')),
+  
 
    
 
