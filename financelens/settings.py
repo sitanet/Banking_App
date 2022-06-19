@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'employee',
     'transactions',
     'loans',
+    'django_filters',
    
    
 ]

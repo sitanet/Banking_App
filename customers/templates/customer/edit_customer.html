@@ -1,0 +1,347 @@
+{%load static%}
+
+{% load crispy_forms_tags %}
+
+    <!-- Biginning header -->
+{% include 'includes/header.html'%}
+
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+    
+{% include 'includes/sidebar.html'  %}
+
+
+  
+    
+{% block content  %}
+
+
+   
+
+<div class="container">
+
+  <div class="card" style="width: 60rem;">
+    <div class="card-body">
+
+
+        <div class="row">
+            <div class="col-3">
+
+            </div>
+   
+  
+            <div class="col-6">
+            {% for message in messages %}
+            <h5 class="alert alert-warning mt-3">{{message}}</h5>
+            {% endfor %}
+            </div>
+            <div class="col-3">
+
+            </div>
+
+        </div>
+   
+ 
+  
+
+    <div class="row">
+            <div class="col-3">
+            </div>
+      
+            <div class="col-5">
+              <center>
+                <h4 style="color: pulple;" class="card bg-secondary text-white"><b>Customer's Information</b>&nbsp;</h4>
+              </center>
+              &nbsp;
+              &nbsp;
+         
+            </div>
+
+            <div class="col-4">
+       
+            </div>
+    </div>
+
+    {% if cust_id %}
+
+
+    <form method="post" enctype="multipart/form-data">
+     
+      {% csrf_token %}
+
+      <div class="row" style="color: purple;">
+        <div class="col-3">
+         
+        </div>
+        
+        <div class="col-3">
+          <input class="form-control" type="file" id="photo" name="photo">
+          
+        </div>
+        <div class="col-3">
+          <input class="form-control" type="file" id="sign" name="sign">
+          
+        </div>
+        
+      </div>
+       
+      <div class="row">
+    
+      </div>
+
+      <div class="row" style="color: green;">
+       
+        <div class="col-1" >
+        </div>
+        <div class="col-4" >
+          <label>Branch Code:*</label>
+     <select class="form-control" name="br_code" id="br_code" required>
+
+        <option selected disabled="true" style="font-weight: bold; border-bottom: 1px solid gray;">----Select Account Type----</option>
+        {% for Comp_data in Comp_data %}
+        <option value="{{Comp_data.br_code}}" style="font-weight: bold; border-bottom: 1px solid gray;">{{Comp_data.br_name}}</option>
+        {% endfor %}
+    </select> 
+        
+       </div>
+       <div class="col-3" >
+        <label >Type of Account:*</label>
+        <select class="form-control" name="gl_no" id="select1" required>
+
+          <option selected disabled="true" style="font-weight: bold; border-bottom: 1px solid gray;">----Select Account Type----</option>
+          {% for coa_data in coa_data %}
+          <option value="{{coa_data.gl_no}}" style="font-weight: bold; border-bottom: 1px solid gray;">{{coa_data.ac_name}}</option>
+          {% endfor %}
+      </select> 
+        
+       </div>
+       <div class="col-3" >
+        <label >Date of Birth*</label>
+         <input class="form-control" type="date" name="dobirth" >
+       
+        
+       </div>
+     </div>
+
+
+     <div class="row">
+    
+    </div>
+
+     <div class="row" style="color: green;">
+      <div class="col-1"style="color: green;" ></div>
+      <div class="col-8">
+        <label >Full Name:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.name}}" readonly>
+      
+      </div>
+
+      <div class="col-2" >
+        <label >Gender:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.cust_sex }}">
+     
+       
+
+        
+       </div>
+    </div>
+
+     
+
+   
+     <div class="row" style="color: green;">
+      <div class="col-1"style="color: green;" ></div>
+      <div class="col-5" >
+        <label >Residential Address:*</label>
+        <textarea class="form-control" name="name"  rows="4">{{ cust_id.res_address }}</textarea>
+        
+       </div>
+
+       <div class="col-5" >
+        <label >Office Address:*</label>
+        <textarea class="form-control" name="name"  rows="4">{{ cust_id.off_address }}</textarea>
+        
+       </div>
+     
+     </div>
+
+     <div class="row" style="color: green;">
+      <div class="col-1"style="color: green;" ></div>
+     
+       <div class="col-4" >
+        <label >Phone No:*</label>
+        <input class="form-control" type="number" name="name" value="{{ cust_id.phone_no }}">
+     
+       </div>
+       <div class="col-3" >
+        <label >Marital Status:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.mar_status  }}">
+       
+       </div>
+
+       <div class="col-3" >
+        <label >Mode of Identification:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.mode_of_id}}">
+        
+       </div>
+     </div>
+
+     <div class="row" style="color: green;">
+      <div class="col-1"style="color: green;" ></div>
+      
+       <div class="col-4" >
+        <label >Identification No:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.id_no }}">
+       
+       </div>
+       <div class="col-3" >
+        <label >Reference No:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.ref_no  }}">
+        
+       </div>
+
+       <div class="col-3" >
+        <label >Place of Birth:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.place_of_birth }}">
+        
+       </div>
+     </div>
+
+     <div class="row" style="color: green;">
+      <div class="col-1"style="color: green;" ></div>
+       
+       <div class="col-4" >
+        <label >Mother Maiden Name:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.mother_mai_name }}">
+      
+       </div>
+       <div class="col-3">
+        <label >Religion:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.religion}}">
+ 
+       </div>
+       <div class="col-3">
+         <label >TIN No:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.tin_no }}">
+       
+       </div>
+     </div>
+
+     <div class="row" style="color: green;">
+      <div class="col-1"style="color: green;" ></div>
+      
+       <div class="col-4">
+         <label >State of Origin:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.state_of_oringin }}">
+        
+       </div>
+       <div class="col-3">
+        <label >Local Government Origin:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.local_govt_origin }}">
+      
+      </div>
+      <div class="col-3">
+        <label >Nationality*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.nationality }}">
+      
+       </div>
+     </div>
+
+    <div class="row">
+       
+       
+    </div>
+
+    <div class="row" style="color: green;">
+      <div class="col-1"style="color: green;" ></div>
+        <div class="col-4">
+          <label >City:*</label>
+          <input class="form-control" type="text" name="name" value="{{ cust_id.city }}">
+    
+       </div>
+       <div class="col-3">
+        <label >Local Government Resident:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.local_govt_res }}">
+        
+       </div>
+       <div class="col-3">
+        <label >State of Resident:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.state_of_res}}">
+        
+      </div>
+    </div>
+
+    <div class="row" style="color: green;">
+      <div class="col-1"style="color: green;" ></div>
+        <div class="col-4">
+          <label >Nearest Bus-Stop:*</label>
+          <input class="form-control" type="text" name="name" value="{{ cust_id.landmark }}">
+      
+       </div>
+       <div class="col-3">
+        <label >Email Address:*</label>
+        <input class="form-control" type="email" name="name" value="{{ cust_id.email_add }}">
+       
+       </div>
+       <div class="col-3">
+        <label >Occupation:*</label>
+        <input class="form-control" type="text" name="name" value="{{ cust_id.ocuppation}}">
+        
+      </div>
+    </div>
+
+    <div class="row"></div>
+     
+
+    <div class="row">
+      
+
+      <div class="col-8">
+        
+     </div>
+        <div class="col-3" >
+          &nbsp;
+            <button type="submit" class="btn btn-primary">Submit Application</button>
+            &nbsp;
+</div>      
+       
+        </div>
+    
+
+
+    </form>
+
+         {% endif %}
+  </div>
+
+    &nbsp;
+    &nbsp;
+  
+ 
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    {% endblock %}
+
+
+</body>
+
+
+{% include 'includes/footer.html'  %}
+
+
+
+
+
+</html>
+

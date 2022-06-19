@@ -5,10 +5,7 @@ from finance_lens_app.models import coa
 
 
 
-SEX = (
-    ("M", "Male"),
-    ("F", "Female"),
-)
+
 
 MARITAL_STATUS = (
     ("S", "Single"),
@@ -43,7 +40,7 @@ class Customer(models.Model):
     cust_no=models.AutoField(primary_key=True)
     name=models.CharField(max_length=100, unique=True)
     dobirth=models.DateField()
-    cust_sex=models.CharField(choices = SEX, default = 'Male', max_length=5)
+    cust_sex=models.CharField(default = 'Male', max_length=5)
     res_address=models.TextField(max_length=200)
     phone_no=models.CharField(max_length=16)
     mar_status=models.CharField(choices = MARITAL_STATUS, default = 'Single',  max_length=10)

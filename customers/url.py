@@ -4,7 +4,7 @@ from django.urls import path
 
 from financelens import settings
 
-from .views import customer_view,list_edit_account
+from .views import customer_view,list_edit_account,cust_edit,customer_delete
 
 
 urlpatterns = [
@@ -12,8 +12,8 @@ urlpatterns = [
    #Admin
     path('new_account/',customer_view, name="new_account"),
     path('list_edit_account/',list_edit_account, name="list_edit_account"),
-    path('list_edit_account/<int:cust_no>/',list_edit_account, name='list_edit_account_edit'),
-    path('list_edit_account/<int:cust_no>/',list_edit_account, name='list_edit_account_delete'),
+    path('new_account/<int:cust_no>/',cust_edit, name='edit_customer'),
+    path('customer_delete/<int:cust_no>/',customer_delete, name='delete'),
 
     
    

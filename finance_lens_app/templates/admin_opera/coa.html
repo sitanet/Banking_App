@@ -14,12 +14,12 @@
 {% block content  %}
 <div class="card col-lg-4 d-flex  align-items-center ">
        
-    <div class="card-body" >
+        <div class="card-body" >
 
-       {% if coa %}
-       <form method="POST" action=""> 
-         <div align="right">
-            <a href="{% url 'coa' %}" >
+                {% if coa %}
+      <form method="POST" action=""> 
+                  <div align="right">
+                      <a href="{% url 'coa' %}" >
             <button type="button"  class="btn btn-secondary btn-sm "><b>Back</b></button></a>
         </div>
         <center>
@@ -82,13 +82,13 @@
          
         
         
-            </form>
+      </form>
            
 
        {% else %}
   <form method="POST" class="needs-validation" novalidate> 
     <center>
-      <h4 style="color: pulple;" class="card-header card-header-danger"><b>Add Account</b></h4>
+      <h4 style="color: pulple;" class="card bg-danger text-white"> &nbsp;<b>Add Account</b> &nbsp;</h4>
 
      </center>
      &nbsp;
@@ -163,7 +163,7 @@
             
            <center>
             
-            <h4 style="color: pulple;" class="card-header"><b>Chart of Accounts</b></h4>
+            <h4 style="color: pulple;" class="card bg-danger text-white"> &nbsp;<b>Chart of Accounts</b> &nbsp;</h4>
            </center>
 
            &nbsp;

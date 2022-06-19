@@ -19,7 +19,8 @@
    
 
 
-
+<div class="container">
+    
   <div class="card" style="width: 60rem;">
 
 
@@ -59,22 +60,92 @@
            </div>
       
         <div class="col-5">
-         <h4 style="color: pulple;" class="card-header card-header-danger"><b>Edit Customer's Information</b></h4>
-         &nbsp;
-         &nbsp;
+        <div class="card">
+          <div class="card bg-secondary text-white">
+            <center>
+            <h4><b> Edit Customer's Information</b></h4>
+          </center>
+          </div>
+       
+        </div>
+        &nbsp;
+        &nbsp;
          
         </div>
 
         <div class="col-4">
-       
+    
            </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-4">
+
+
+      </div>
+     
+   
+
+        
+       
+   
+
+    
+
+      <div class="col-4">
+
+
+      </div>
+
+
     </div>
 
     
 
 
 
+    <form method="GET">
+          
+    
+  
+    <div class="row">
+      <div class="col-5">
+        {{cust_info2.form.name|as_crispy_field }}
+        
 
+      </div>
+ 
+      <div class="col-3">
+        {{cust_info2.form.cust_no|as_crispy_field }}
+      </div>
+     
+      <div class="col-4">
+        {{cust_info2.form.phone_no|as_crispy_field }}
+      </div>
+   
+    </div>
+    <div class="row">
+      <div class="col-5">
+
+  
+  </div>
+  <div class="col-5">
+
+   
+  </div>
+
+  <div class="col-2">
+
+    <button type="submit" class="btn btn-primary" >Search</button>
+  </div>
+
+  </div>
+   
+</div>
+   
+
+  </form>
 
     <div class="table-responsive">
                 
@@ -84,6 +155,7 @@
             <tr>
               <th style="font-weight: bold; border-bottom: 1px solid gray;">Account</th>
               <th style="font-weight: bold; border-bottom: 1px solid gray;">Customers Name</th>
+              <th style="font-weight: bold; border-bottom: 1px solid gray;">Phone No</th>
               
              
              
@@ -108,44 +180,23 @@
               <td>{{cust_info.cust_no}}</td>
              
               <td >{{cust_info.name}}</td>
+
+              <td >{{cust_info.phone_no}}</td>
+
+             
               
               
               
               <td>
                
-                <a class="btn btn-primary btn-sm" href="{% url 'list_edit_account_edit' cust_info.cust_no%}">Edit</a>
-                <a class="btn btn-danger btn-sm" href="{% url 'list_edit_account_delete' cust_info.cust_no%}">Delete</a>
+                <a class="btn btn-primary btn-sm" href="{% url 'edit_customer' cust_info.cust_no%}">Edit</a>
+                <a class="btn btn-danger btn-sm" href="{% url 'delete' cust_info.cust_no%}">Delete</a>
                 
                  
               </td>
              
               
-             
-             
-              
-              
-              
-             
-             
-             
-             
-              
-            
-              
-              
-        
-              
-              
-            
-              
-       
-            
-             
-            
-             
-            
-             
-             
+
           
             </tr>
        
@@ -156,20 +207,51 @@
 
          <!-- Pagination -->
       
-        <div class="container">
-        
-
-          <div class="row">
-            <div class="col-sm offset-md-3">
+         <b><p>Page: {{cust_info.number}}/{{cust_info.paginator.num_pages}}</p></b> 
+              <div class="container">
               
+
+                <div class="row">
+                  <div class="col-sm offset-md-3">
+                    
+                   
+                    
              
-              
-       
 
-      
-        </div>
-        </div>
-      </div>
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item">
+                    {% if cust_info.has_previous %}
+                    <a class="page-link" 
+                    href="?page={{ cust_info.previous_page_number}}">Previous</a>
+                    {% endif %}
+                  </li>
+                  {% for num_page in cust_info.paginator.page_range %}
+                  <br>
+                  {% if cust_info.number == num_page %}
+                  <li class="page-item active">
+                    <a class="page-link" href="?page={{ num_page }}">{{num_page}} <span class="sr-only">(current)</span></a>
+                  </li>
+
+                  {% else %}
+                  <li class="page-item ">
+                    <a class="page-link" href="?page={{ num_page }}">{{num_page}} <span class="sr-only">(current)</span></a>
+                  </li>
+                  {% endif %}
+                  <br>
+                  {% endfor %}
+                 
+                  <li class="page-item">
+                    {% if cust_info.has_next %}
+                    <a class="page-link" href="?page={{ cust_info.next_page_number}}">Next</a>
+                    {% endif %}
+                  </li>
+                </ul>
+              
+              </nav>
+              </div>
+              </div>
+            </div>
 
 
     
