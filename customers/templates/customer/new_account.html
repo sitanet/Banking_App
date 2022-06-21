@@ -1,11 +1,13 @@
 {%load static%}
 
 
+<link rel="stylesheet" href="{% static 'css/styles.css'%}">
 
+ 
 
     <!-- Biginning header -->
 {% include 'includes/header.html'%}
-<link rel="stylesheet" href="style.css">
+
 
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
@@ -68,29 +70,34 @@
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
 
-  
+        
 
       <div class="row" style="color: purple;">
-        <div class="col-6">
+      
+
+        <div class="col-8">
          
         </div>
-        <div class="col-3">
+
+        <div class="col-2">
           <div class="profile-pic-div">
-            <img src="{% static 'images/passport.jpg' %}" >
-          
-           </div>
-           <div id="file">
-          <b>{{ form.photo }}</b>
+            <img src="{% static 'images/lab.jpg' %}" id="image">
+            <input type="file" id="photo" name="photo">
+         
+            <label for="photo" id="uploadBtn">Choose Photo</label>
           </div>
         </div>
-        <div class="col-3">
-          <div class="profile-pic-div">
-            <img src="{% static 'images/signature.jpg' %}" >
-           </div>
-          <b>{{ form.sign }}</b>
+
+        <div class="col-2">
+          <div class="profile-pic-div2">
+            <img src="{% static 'images/signature.jpg' %}" id="sign_image">
+            <input type="file" id="sign" name="sign">
+           
+            <label for="sign" id="uploadBtn2">Choose Sign</label>
+          </div>
         </div>
       </div>
-   
+    
 
       <div class="row" style="color: green;">
         <div class="col-1"style="color: green;" ></div>
@@ -291,7 +298,7 @@
 
     {% endblock %}
 
-
+    <script src="{% static 'js/script.js'%}" type="text/javascript"></script> 
 </body>
 
 
