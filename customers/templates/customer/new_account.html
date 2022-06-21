@@ -2,8 +2,10 @@
 
 
 
+
     <!-- Biginning header -->
 {% include 'includes/header.html'%}
+<link rel="stylesheet" href="style.css">
 
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
@@ -44,10 +46,9 @@
   
 
     <div class="row">
-            <div class="col-3">
-            </div>
+            
       
-            <div class="col-5">
+            <div class="col-12">
               <center>
                 <h4 style="color: pulple;" class="card bg-primary text-white"><b>Customer's Information</b>&nbsp;</h4>
               </center>
@@ -67,14 +68,25 @@
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
 
+  
+
       <div class="row" style="color: purple;">
-        <div class="col-3">
+        <div class="col-6">
          
         </div>
         <div class="col-3">
+          <div class="profile-pic-div">
+            <img src="{% static 'images/passport.jpg' %}" >
+          
+           </div>
+           <div id="file">
           <b>{{ form.photo }}</b>
+          </div>
         </div>
         <div class="col-3">
+          <div class="profile-pic-div">
+            <img src="{% static 'images/signature.jpg' %}" >
+           </div>
           <b>{{ form.sign }}</b>
         </div>
       </div>
