@@ -12,7 +12,6 @@ from company.models import Company
 
 from .models import Customer
 from finance_lens_app.models import coa
-
 from django.forms import ModelChoiceField
 from django.forms.widgets import NumberInput, EmailInput
 from django.contrib.admin.widgets import AdminDateWidget, AdminEmailInputWidget
