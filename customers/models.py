@@ -36,7 +36,7 @@ class Customer(models.Model):
     photo=models.ImageField(upload_to='photos/')
     sign=models.ImageField(upload_to='signs/')
     br_code=models.ForeignKey(Company, on_delete=models.CASCADE)
-    acc_cat=models.ForeignKey(coa, on_delete=models.CASCADE)
+    acc_cat=models.ForeignKey(coa, on_delete=models.CASCADE, max_length=10)
     cust_no=models.AutoField(primary_key=True)
     name=models.CharField(max_length=100, unique=True)
     dobirth=models.DateField()

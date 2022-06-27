@@ -51,7 +51,7 @@ class customers(forms.ModelForm):
     dobirth = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
     
     br_code = forms.ModelChoiceField(queryset = Company.objects.all(),initial = 0, widget=forms.Select(attrs={'class': 'form-control'}))
-    acc_cat = forms.ModelChoiceField(queryset = coa.objects.all(),initial = 0, widget=forms.Select(attrs={'class': 'form-control'}))
+    acc_cat = forms.ModelChoiceField(queryset = coa.objects.filter(gl_no__icontains='200'),initial = 0, widget=forms.Select(attrs={'class': 'form-control'}))
     res_address=forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}), label='Resident Address:',max_length=10)
     off_address=forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}), label='Office Address:',max_length=10)
     phone_no=forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control', 'type': 'phone'}))
